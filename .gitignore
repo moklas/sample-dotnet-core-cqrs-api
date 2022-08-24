@@ -269,4 +269,4 @@ pub/
 Logs
 
 #Ignore .Github folder
-.github
+*.github
