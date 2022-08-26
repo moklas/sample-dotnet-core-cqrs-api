@@ -267,3 +267,5 @@ pub/
 
 #Ignore logs folder
 Logs
+
+.github/
