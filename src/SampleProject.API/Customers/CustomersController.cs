@@ -33,10 +33,15 @@ namespace SampleProject.API.Customers
            return Created(string.Empty, customer);
         }
 
+        [Route("{customerId}")]
         [HttpGet]
-        public ActionResult<CustomerDto> GetNewCustomerId()
+        [ProducesResponseType(typeof(CustomerDetailsDto), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetCustomer([FromRoute] Guid customerId)
         {
-            return Ok(new CustomerDto { Id = Guid.NewGuid() });
+            var customer = await _mediator.Send(new GetCustomerDetailsQuery(customerId));
+            if (customer == null) return NotFound();
+
+            return Ok(customer);       
         }
     }
 }
