@@ -14,7 +14,7 @@ namespace SampleProject.Domain.Payments
 
         private PaymentStatus _status;
 
-        private bool _emailNotificationIsSent;
+        internal bool EmailNotificationIsSent;
 
         private Payment()
         {
@@ -27,14 +27,14 @@ namespace SampleProject.Domain.Payments
             this._createDate = DateTime.UtcNow;
             this._orderId = orderId;
             this._status = PaymentStatus.ToPay;
-            this._emailNotificationIsSent = false;
+            this.EmailNotificationIsSent = false;
 
             this.AddDomainEvent(new PaymentCreatedEvent(this.Id, this._orderId));
         }
 
         public void MarkEmailNotificationIsSent()
         {
-            this._emailNotificationIsSent = true;
+            this.EmailNotificationIsSent = true;
         }
     }
 }

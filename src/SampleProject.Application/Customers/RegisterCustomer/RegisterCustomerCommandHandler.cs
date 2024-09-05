@@ -26,13 +26,23 @@ namespace SampleProject.Application.Customers.RegisterCustomer
 
         public async Task<CustomerDto> Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
         {
+            return await CreateCustomer(request, cancellationToken);
+        }
+
+        internal async Task<CustomerDto> CreateCustomer(RegisterCustomerCommand request, CancellationToken cancellationToken)
+        {
             var customer = Customer.CreateRegistered(request.Email, request.Name, this._customerUniquenessChecker);
 
-            await this._customerRepository.AddAsync(customer);
+            if (customer != null)
+            {
+                await this._customerRepository.AddAsync(customer);
 
-            await this._unitOfWork.CommitAsync(cancellationToken);
+                await this._unitOfWork.CommitAsync(cancellationToken);
 
-            return new CustomerDto { Id = customer.Id.Value };
+                return new CustomerDto { Id = customer.Id.Value };
+            }
+
+            return null;
         }
     }
 }

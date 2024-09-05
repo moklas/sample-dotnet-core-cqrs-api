@@ -44,6 +44,11 @@ namespace SampleProject.Domain.Customers.Orders
 
         internal void ChangeQuantity(ProductPriceData productPrice, int quantity, List<ConversionRate> conversionRates)
         {
+            if (quantity < 1)
+            {
+                throw new TooLowValueException($"Value can not be lower than 1", $"Value passed in was ({quantity})");
+            }
+
             this.Quantity = quantity;
 
             this.CalculateValue(productPrice, this.Value.Currency, conversionRates);

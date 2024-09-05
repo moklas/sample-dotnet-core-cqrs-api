@@ -8,5 +8,7 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="8.0.0" />
   </ItemGroup>
-
+  <ItemGroup>
+    <InternalsVisibleTo Include="SampleProject.UnitTests" />
+  </ItemGroup>
 </Project>

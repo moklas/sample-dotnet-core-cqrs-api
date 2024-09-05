@@ -13,5 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SampleProject.Domain\SampleProject.Domain.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <InternalsVisibleTo Include="SampleProject.UnitTests" />
+  </ItemGroup>
 </Project>

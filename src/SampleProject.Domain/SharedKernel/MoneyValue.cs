@@ -11,7 +11,7 @@ namespace SampleProject.Domain.SharedKernel
 
         public string Currency { get; }
 
-        private MoneyValue(decimal value, string currency)
+        internal MoneyValue(decimal value, string currency)
         {
             this.Value = value;
             this.Currency = currency;
